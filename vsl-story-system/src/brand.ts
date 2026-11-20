@@ -1,7 +1,6 @@
 // Logo oficial do Story System.
-// Coloque o arquivo em public/logo.png (fundo transparente) e mude HAS_LOGO para true.
-// Enquanto HAS_LOGO = false, o vídeo usa um wordmark tipográfico neutro como espaço reservado.
-export const HAS_LOGO = false;
+// Arquivo: public/logo.png (fundo transparente). Com HAS_LOGO = false, o ícone fica vazio.
+export const HAS_LOGO = true;
 export const LOGO_FILE = "logo.png";
-// proporção largura/altura da logo (ajuste à sua arte)
-export const LOGO_ASPECT = 3.2;
+// proporção largura/altura da logo (public/logo.png já recortada com fundo transparente)
+export const LOGO_ASPECT = 0.9741;

@@ -254,7 +254,7 @@ export const S8Reveal: React.FC = () => {
             width: 1600,
             height: 1600,
             transform: `translateY(-60px) rotate(${(frame - hit) * 0.15}deg) scale(${0.6 + rays * 0.4})`,
-            background: `repeating-conic-gradient(from 0deg, rgba(255,194,26,0.10) 0deg 6deg, transparent 6deg 18deg)`,
+            background: `repeating-conic-gradient(from 0deg, rgba(${C.primaryRgb},0.10) 0deg 6deg, transparent 6deg 18deg)`,
             maskImage: "radial-gradient(circle, black 0%, transparent 60%)",
             WebkitMaskImage: "radial-gradient(circle, black 0%, transparent 60%)",
           }}
@@ -264,7 +264,7 @@ export const S8Reveal: React.FC = () => {
       {frame >= hit - 1 && (
         <AbsoluteFill style={{ alignItems: "center", flexDirection: "column", paddingTop: 300 }}>
           <div style={{ opacity: Math.min(1, logoP * 1.5), transform: `scale(${interpolate(logoP, [0, 1], [0.6, 1]) * breathe})`, filter: `blur(${(1 - Math.min(1, logoP)) * 10}px)` }}>
-            <Logo height={150} glow={1} />
+            <Logo height={150} glow={1} reveal={hit} />
           </div>
           <div style={{ height: 50 }} />
           <In delay={at(95.0)} y={20} cfg="snappy">

@@ -8,7 +8,7 @@ original e sincronizada palavra a palavra com a transcrição do áudio.
 1. Coloque os arquivos de mídia (não versionados):
    - `public/narracao.mp3` — narração
    - `public/img/tiktok.png` e `public/img/instagram.png` — capturas dos perfis (1080×2388)
-   - `public/logo.png` — logo oficial do Story System (PNG transparente)
+   - `public/logo.png` — logo oficial do Story System (PNG transparente; já preparada e recortada)
 2. Em `src/brand.ts`, mude `HAS_LOGO` para `true` e ajuste `LOGO_ASPECT` (largura ÷ altura da logo).
    Se a logo usar outras cores, ajuste a paleta em `src/theme.ts`.
 3. `npm install && npm run audio && npm run render`

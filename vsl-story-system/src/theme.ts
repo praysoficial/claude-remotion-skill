@@ -9,12 +9,15 @@ export const theme = {
     bgAlt: "#13111A",
     surface: "rgba(255,255,255,0.045)",
     stroke: "rgba(255,255,255,0.10)",
-    primary: "#FFC21A", // cor-herói (ouro) — no máximo 1 elemento por frame
-    accent: "#E8332A", // vermelho das capas — tensão/conflito
+    primary: "#00E5EE", // ciano da logo — cor-herói, no máximo 1 elemento por frame
+    accent: "#FF1022", // vermelho da logo — tensão/conflito
     text: "#F6F3EC",
     textDim: "#A29EAB",
     textMute: "#5E5A66",
-    glow: "rgba(255, 194, 26, 0.45)",
+    glow: "rgba(0, 229, 238, 0.45)",
+    primaryRgb: "0, 229, 238",
+    accentRgb: "255, 16, 34",
+    onPrimary: "#04191B",
   },
   fonts: {
     display: "Bricolage",

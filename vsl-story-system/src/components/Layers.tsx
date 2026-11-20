@@ -74,7 +74,7 @@ export const BgMesh: React.FC<{ warm?: number; red?: number; dim?: number }> = (
 export const Grade: React.FC = () => (
   <AbsoluteFill style={{ pointerEvents: "none" }}>
     <AbsoluteFill
-      style={{ backgroundColor: "#FFB000", mixBlendMode: "soft-light", opacity: 0.1 }}
+      style={{ backgroundColor: theme.colors.primary, mixBlendMode: "soft-light", opacity: 0.07 }}
     />
     <AbsoluteFill
       style={{

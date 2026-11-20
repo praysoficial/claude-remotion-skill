@@ -174,9 +174,9 @@ export const Glass: React.FC<{ style?: React.CSSProperties; children?: React.Rea
   <div
     style={{
       background: active
-        ? "linear-gradient(160deg, rgba(255,194,26,0.16), rgba(255,194,26,0.04))"
+        ? `linear-gradient(160deg, rgba(${theme.colors.primaryRgb},0.16), rgba(${theme.colors.primaryRgb},0.04))`
         : "linear-gradient(160deg, rgba(255,255,255,0.075), rgba(255,255,255,0.02))",
-      border: `1px solid ${active ? "rgba(255,194,26,0.55)" : theme.colors.stroke}`,
+      border: `1px solid ${active ? `rgba(${theme.colors.primaryRgb},0.55)` : theme.colors.stroke}`,
       borderRadius: 28,
       boxShadow: active
         ? `0 30px 80px -30px rgba(0,0,0,0.8), 0 0 60px -10px ${theme.colors.glow}`
@@ -217,7 +217,7 @@ export const DrawRect: React.FC<{
         width={w}
         height={h}
         rx={r}
-        fill="rgba(255,194,26,0.07)"
+        fill={`rgba(${theme.colors.primaryRgb},0.07)`}
         fillOpacity={p}
         stroke={color}
         strokeWidth={stroke * pulse}
@@ -230,40 +230,64 @@ export const DrawRect: React.FC<{
 };
 
 // ---------- Logo ----------
-// Usa public/logo.png quando HAS_LOGO=true; senão, wordmark tipográfico neutro.
-export const Logo: React.FC<{ height: number; glow?: number }> = ({ height, glow = 0 }) => {
-  if (HAS_LOGO) {
-    return (
-      <Img
-        src={staticFile(LOGO_FILE)}
-        style={{
-          height,
-          width: height * LOGO_ASPECT,
-          objectFit: "contain",
-          filter: glow ? `drop-shadow(0 0 ${40 * glow}px ${theme.colors.glow})` : undefined,
-        }}
-      />
-    );
-  }
+// Marca oficial (public/logo.png) apresentada num ícone branco arredondado — preserva a arte
+// original (o play preto precisa de fundo claro). `wordmark` adiciona o nome do produto ao lado.
+export const LogoMark: React.FC<{ size: number; glow?: number }> = ({ size, glow = 0 }) => (
+  <div
+    style={{
+      width: size,
+      height: size,
+      borderRadius: size * 0.26,
+      background: "linear-gradient(160deg, #FFFFFF, #EEF1F3)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      flexShrink: 0,
+      boxShadow: `0 ${size * 0.12}px ${size * 0.3}px -${size * 0.08}px rgba(0,0,0,0.7)${glow ? `, 0 0 ${size * 0.5 * glow}px rgba(${theme.colors.primaryRgb},${0.35 * glow})` : ""}`,
+    }}
+  >
+    {HAS_LOGO ? (
+      <Img src={staticFile(LOGO_FILE)} style={{ width: size * 0.78, height: (size * 0.78) / LOGO_ASPECT, objectFit: "contain" }} />
+    ) : null}
+  </div>
+);
+
+// `reveal` (frame local): ícone entra com giro elástico, nome desliza de trás dele 8 frames depois
+export const Logo: React.FC<{ height: number; glow?: number; wordmark?: boolean; reveal?: number }> = ({ height, glow = 0, wordmark = true, reveal }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const m = reveal === undefined ? 1 : spring({ frame: frame - reveal, fps, config: theme.spring.bouncy });
+  const w = reveal === undefined ? 1 : spring({ frame: frame - reveal - 8, fps, config: theme.spring.smooth });
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "baseline",
-        gap: height * 0.22,
-        fontFamily: theme.fonts.display,
-        fontWeight: 800,
-        fontSize: height,
-        letterSpacing: "-0.04em",
-        lineHeight: 1,
-        color: theme.colors.text,
-        textShadow: glow ? `0 0 ${60 * glow}px ${theme.colors.glow}` : undefined,
-        whiteSpace: "nowrap",
-      }}
-    >
-      <span>Story</span>
-      <span style={{ color: theme.colors.primary }}>System</span>
+  <div style={{ display: "flex", alignItems: "center", gap: height * 0.28 * Math.min(1, w) }}>
+    <div style={{ transform: `scale(${interpolate(m, [0, 1], [0.3, 1])}) rotate(${interpolate(m, [0, 1], [-25, 0])}deg)`, opacity: Math.min(1, m * 2) }}>
+      <LogoMark size={height * 1.25} glow={glow} />
     </div>
+    {wordmark && (
+      <div
+        style={{
+          opacity: Math.min(1, w * 1.3),
+          maxWidth: reveal === undefined ? undefined : interpolate(Math.min(1, w), [0, 1], [0, height * 6]),
+          overflow: "hidden",
+          transform: `translateX(${interpolate(w, [0, 1], [-height * 0.8, 0])}px)`,
+          clipPath: `inset(0 ${interpolate(w, [0, 1], [100, 0])}% 0 0)`,
+          display: "flex",
+          alignItems: "baseline",
+          gap: height * 0.2,
+          fontFamily: theme.fonts.display,
+          fontWeight: 800,
+          fontSize: height * 0.82,
+          letterSpacing: "-0.04em",
+          lineHeight: 1,
+          color: theme.colors.text,
+          whiteSpace: "nowrap",
+        }}
+      >
+        <span>Story</span>
+        <span style={{ color: theme.colors.primary, textShadow: glow ? `0 0 ${50 * glow}px ${theme.colors.glow}` : undefined }}>System</span>
+      </div>
+    )}
+  </div>
   );
 };
 

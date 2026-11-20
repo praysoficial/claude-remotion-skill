@@ -163,7 +163,7 @@ export const S12Start: React.FC = () => {
               ].map((it, i) => (
                 <In key={i} delay={it.d} y={40} cfg="bouncy" scale={0.85}>
                   <Glass style={{ padding: "24px 40px", display: "flex", alignItems: "center", gap: 22, background: "rgba(9,8,13,0.85)" }}>
-                    <div style={{ width: 56, height: 56, borderRadius: 16, background: "rgba(232,51,42,0.15)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <div style={{ width: 56, height: 56, borderRadius: 16, background: `rgba(${C.accentRgb},0.15)`, display: "flex", alignItems: "center", justifyContent: "center" }}>
                       <Icon name="x" size={34} color={C.accent} stroke={3} />
                     </div>
                     <span style={{ ...display(64, 700) }}>{it.t}</span>
@@ -238,18 +238,18 @@ const CtaButton: React.FC<{ delay: number; pulseFrom: number }> = ({ delay, puls
           overflow: "hidden",
           padding: "30px 60px",
           borderRadius: 999,
-          background: `linear-gradient(180deg, #FFD34D, ${C.primary})`,
+          background: `linear-gradient(180deg, #7FF6FA, ${C.primary})`,
           boxShadow: `0 20px 60px -10px ${C.glow}, inset 0 2px 0 rgba(255,255,255,0.5)`,
           display: "flex",
           alignItems: "center",
           gap: 22,
           ...display(46),
-          color: "#1A1205",
+          color: C.onPrimary,
           letterSpacing: "-0.02em",
         }}
       >
         Quero criar minhas histórias
-        <Icon name="arrow" size={44} color="#1A1205" stroke={3} />
+        <Icon name="arrow" size={44} color={C.onPrimary} stroke={3} />
         <div style={{ position: "absolute", top: 0, bottom: 0, width: 140, left: `${-20 + sweep * 140}%`, background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent)", transform: "skewX(-20deg)" }} />
       </div>
     </div>
@@ -322,7 +322,7 @@ export const S14CTA: React.FC = () => {
           </In>
           <div style={{ height: interpolate(up, [0, 1], [40, 0]) }} />
           <div style={{ opacity: Math.min(1, logoP * 1.5), transform: `scale(${interpolate(logoP, [0, 1], [0.6, 1]) * interpolate(up, [0, 1], [1, 0.62]) * interpolate(lock, [0, 1], [1, 1.35])})`, filter: `blur(${(1 - Math.min(1, logoP)) * 10}px)` }}>
-            <Logo height={140} glow={0.8} />
+            <Logo height={140} glow={0.8} reveal={hit} />
           </div>
           <div style={{ height: interpolate(up, [0, 1], [70, 20]) }} />
           {/* linhas finais */}
