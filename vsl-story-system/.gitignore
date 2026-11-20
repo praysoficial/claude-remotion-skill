@@ -1,0 +1,8 @@
+node_modules/
+out/
+# mídia pessoal (áudio e capturas) — não versionar em repositório público
+public/narracao.mp3
+public/img/
+public/logo.png
+# gerado por `npm run audio`
+public/sfx/
