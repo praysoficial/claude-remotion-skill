@@ -1,0 +1,78 @@
+{
+  "serie": "Dentro da Farda",
+  "formato": { "largura": 1080, "altura": 1920, "fps": 30, "plataformas": ["Reels", "Shorts"] },
+  "atualizado_em": "2026-11-22",
+  "episodio_atual": 1,
+  "status_episodio": "roteiro fechado, aguardando vozes",
+  "prazo": { "dia": 1, "total": 31, "contador_na_tela": "DIA 1/31" },
+
+  "canone": {
+    "regra": "'exibido' é só o que já foi ao ar, e nunca pode ser contradito. 'travado' é o que o roteiro do episódio 1 estabelece; entra em 'exibido' quando o episódio for publicado.",
+    "exibido": [],
+    "travado": [
+      { "id": "arthur", "fato": "Arthur tem 24 anos, três semanas de farda e quer ser investigador. Único caso resolvido: o grampeador do 3º andar, que estava na gaveta dele." },
+      { "id": "marca_arthur", "fato": "Arthur usa um quepe grande demais, que escorrega, e anda com um caderninho." },
+      { "id": "bastos", "fato": "Sargento Bastos, chefe do depósito de provas. Tronco largo, molho de chaves enorme e lanterna. Tem 30 anos de casa." },
+      { "id": "caixa_31b", "fato": "Bastos tirou a caixa 31-B (Operação Lacre) do depósito à noite e a pôs no porta-malas de um carro sem placa." },
+      { "id": "operacao_lacre", "fato": "A Operação Lacre é a única investigação de corrupção dentro da delegacia." },
+      { "id": "prazo", "fato": "Em 31 dias a investigação é encerrada e o material vai para incineração (ofício na porta do depósito)." },
+      { "id": "manequim", "fato": "Existe um manequim de treino com colete no depósito. Bastos confundiu Arthur com ele." },
+      { "id": "bastos_nao_viu", "fato": "Bastos não sabe que Arthur viu. Ele acha que tocou no manequim." },
+      { "id": "guarda", "fato": "O guarda do portão viu Bastos sair e acenou, como se fosse normal." }
+    ]
+  },
+
+  "plano": {
+    "regra": "Plano pode mudar. O episódio 2 só é escrito depois do voto e precisa cumprir a promessa feita na tela para a opção vencedora: a mesma vantagem e o mesmo risco.",
+    "promessas_do_ep1": {
+      "INTERROGAR": {
+        "acao": "amanhã cedo, chamar o Bastos para a sala de interrogatório",
+        "se_der_certo": "sai de lá com um nome",
+        "se_der_errado": "a delegacia inteira sabe que o novato anda perguntando"
+      },
+      "SEGUIR": {
+        "acao": "hoje à noite, ir atrás do carro do Bastos",
+        "se_der_certo": "descobre para onde vão as provas",
+        "se_der_errado": "fica sozinho num lugar que não conhece"
+      }
+    },
+    "ep02": { "status": "a escrever depois do voto", "opcao_vencedora": null }
+  },
+
+  "pontas_em_aberto": [
+    { "id": "conteudo_31b", "pergunta": "O que exatamente tem na caixa 31-B?", "abre_no_ep": 1 },
+    { "id": "destino", "pergunta": "Para onde o Bastos está levando as provas?", "abre_no_ep": 1 },
+    { "id": "mandante", "pergunta": "Bastos age sozinho ou para alguém?", "abre_no_ep": 1 },
+    { "id": "carro_sem_placa", "pergunta": "De quem é o carro sem placa?", "abre_no_ep": 1 },
+    { "id": "oficio", "pergunta": "Quem assinou o ofício de encerramento e incineração, e por que em 31 dias?", "abre_no_ep": 1 },
+    { "id": "guarda", "pergunta": "O guarda do portão acenou por costume ou porque sabe?", "abre_no_ep": 1 },
+    { "id": "rede", "pergunta": "Quem mais faz parte da rede dentro da delegacia?", "abre_no_ep": 1 }
+  ],
+
+  "votacao": {
+    "episodio": 1,
+    "status": "não publicada",
+    "opcoes": ["INTERROGAR", "SEGUIR"],
+    "ordem_na_tela": "INTERROGAR à esquerda (vermelho), SEGUIR à direita (ciano)",
+    "como_contar": "comentários que contêm a palavra INTERROGAR ou SEGUIR; um voto por conta; comentários com as duas palavras não contam",
+    "resultado": null,
+    "contagem": { "INTERROGAR": null, "SEGUIR": null }
+  },
+
+  "producao": {
+    "vozes_esperadas": [
+      "ep01_F01_bastos.wav", "ep01_F02_narrador.wav", "ep01_F03_bastos.wav",
+      "ep01_F04_narrador.wav", "ep01_F05_narrador.wav", "ep01_F06_narrador.wav",
+      "ep01_F07_narrador.wav", "ep01_F08_narrador.wav", "ep01_F09_narrador.wav",
+      "ep01_F10_narrador.wav"
+    ],
+    "vozes_recebidas": [],
+    "ambiente_conferido": {
+      "remotion": "4.0.545 instalado e renderizando (teste anterior ok)",
+      "chromium": "headless shell do Playwright funciona com o Remotion",
+      "ffmpeg": "disponível no sistema",
+      "espeak_ng": "instalado; serve só para voz-guia de teste, nunca como voz final",
+      "alinhamento_por_palavra": "BLOQUEADO: modelos do Whisper e do Vosk não baixam (hosts negados pela rede). O pacote vosk instala, mas sem modelo de português não alinha."
+    }
+  }
+}
