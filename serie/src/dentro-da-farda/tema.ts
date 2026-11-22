@@ -6,6 +6,10 @@ export const tema = {
     // destaques da série (um por vez em cada plano)
     vermelho: "#FF3B4A",
     ciano: "#2FE3FF",
+    // luz ciano NO CORPO dos bonecos: bem mais clara, para o boneco continuar branco
+    luzCiano: "#B5F1FF",
+    luzQuente: "#FFF0D6",
+    luzFria: "#D3E6F5",
 
     // personagens
     boneco: "#F1F3F8",

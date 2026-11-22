@@ -250,15 +250,19 @@ def ini_cena(c):
 # estacionamento: goteira irregular, relé do pisca-alerta
 c = ini_cena("carro"); c2 = ini_cena("arthur")
 tg = 0.3
+gotas = []
 while tg < c2["fim"]:
-    por(gota(), tg, 0.55); tg += rng.uniform(1.3, 2.3)
+    por(gota(), tg, 0.55); gotas.append(round(tg, 3)); tg += rng.uniform(1.3, 2.3)
 for k in range(int((c2["fim"]) / 0.55)):
     por(clique_rele(1.0 if k % 2 == 0 else 0.6), 0.2 + k * 0.55, 0.25)
 por(passo(), 0.05, 0.5); por(passo(), 0.55, 0.45)
 por(notificacao(), M["celular_achado"])
 por(toque_tela(), M["play"])
 # gota isolada no silêncio depois do áudio do Victor
-por(gota(), M["audio_corta"] + 0.35, 0.8)
+por(gota(), M["audio_corta"] + 0.35, 0.8); gotas.append(round(M["audio_corta"] + 0.35, 3))
+timeline["gotas"] = sorted(gotas)
+timeline["rele_periodo"] = 0.55
+json.dump(timeline, open(os.path.join(RAIZ, "src/dentro-da-farda/ep01/timeline.json"), "w"), ensure_ascii=False)
 
 # delegacia: teclado distante e zumbido de lâmpada
 s = ini_cena("sala"); por(teclado(s["fim"] - s["ini"]), s["ini"], 0.25)
@@ -307,12 +311,12 @@ trilha *= buraco(L["17"]["fim"], L["18"]["ini"] - 0.2)
 hop = int(0.01 * SR)
 ev = np.sqrt(np.convolve(voz ** 2, np.ones(hop) / hop, mode="same"))
 ev = np.convolve((ev > 0.01).astype(float), np.ones(int(0.25 * SR)) / int(0.25 * SR), mode="same")
-duck = 1 - 0.6 * np.clip(ev * 1.5, 0, 1)
+duck = 1 - 0.72 * np.clip(ev * 1.5, 0, 1)
 trilha *= duck
 fade = np.clip(tt / 1.2, 0, 1) * np.clip((M["fim"] + 0.3 - tt) / 0.6, 0, 1)
 trilha *= fade
 
-mix = voz * 1.0 + sfx * 0.55 + trilha.astype(np.float32) * 0.55
+mix = voz * 1.0 + sfx * 0.55 + trilha.astype(np.float32) * 0.42
 mix = mix[: int(total * SR)]
 pico = np.abs(mix).max()
 mix = mix / pico * 0.89 if pico > 0.89 else mix
@@ -324,9 +328,18 @@ def salvar(caminho, x):
 
 
 pub = os.path.join(RAIZ, "public/dentro-da-farda/ep01")
-salvar(os.path.join(pub, "ep01_mix.wav"), mix)
+bruto = os.path.join(pub, "ep01_mix_sem_normalizar.wav")
+salvar(bruto, mix)
+# loudness para Reels: −14 LUFS integrado, pico verdadeiro −1,5 dBTP (loudnorm em 2 passagens, linear)
+med = subprocess.run(["ffmpeg", "-v", "info", "-i", bruto, "-af", "loudnorm=I=-14:TP=-1.5:LRA=11:print_format=json", "-f", "null", "-"],
+                     capture_output=True, text=True).stderr
+j = json.loads(med[med.rindex("{"): med.rindex("}") + 1])
+subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", bruto, "-af",
+                f"loudnorm=I=-14:TP=-1.5:LRA=11:measured_I={j['input_i']}:measured_TP={j['input_tp']}:measured_LRA={j['input_lra']}:measured_thresh={j['input_thresh']}:offset={j['target_offset']}:linear=true",
+                "-ar", str(SR), "-c:a", "pcm_s16le", os.path.join(pub, "ep01_mix.wav")], check=True)
+os.remove(bruto)
 salvar(os.path.join(pub, "ep01_dialogos.wav"), np.clip(voz[: int(total * SR)], -1, 1))
-salvar(os.path.join(pub, "ep01_trilha.wav"), trilha[: int(total * SR)].astype(np.float32) * 0.55)
+salvar(os.path.join(pub, "ep01_trilha.wav"), trilha[: int(total * SR)].astype(np.float32) * 0.42)
 
 
 # ── 7. SRT ──────────────────────────────────────────────────────────────────────

@@ -121,34 +121,50 @@ def frases(texto):
 
 
 def tempos_palavras(texto, trechos, t0):
-    """Distribui as palavras nos trechos de voz da fala (tempos relativos a t0)."""
-    fr = frases(texto)
-    # casa frases com trechos: se houver mais trechos que frases, junta os menores
-    # espaços; se houver menos, divide o trecho por sílabas
+    """Distribui as palavras pelo tempo COM VOZ da fala (tempos relativos a t0).
+
+    1. Cada silêncio entre trechos é casado com a fronteira de frase (pontuação)
+       mais próxima na proporção de sílabas; silêncios sem pontuação perto ficam
+       dentro da frase.
+    2. Cada grupo de frases ocupa o intervalo entre seus silêncios, e dentro dele
+       as palavras se repartem por sílabas, pulando qualquer silêncio restante.
+    """
+    ws = texto.split()
+    pesos = np.array([max(1, silabas(w)) + 0.4 for w in ws])
+    cum = np.concatenate([[0], np.cumsum(pesos)]) / pesos.sum()  # fração antes de cada palavra
     tr = [list(x) for x in trechos]
-    while len(tr) > len(fr):
-        gaps = [tr[i + 1][0] - tr[i][1] for i in range(len(tr) - 1)]
-        i = int(np.argmin(gaps)); tr[i][1] = tr[i + 1][1]; del tr[i + 1]
-    grupos = []  # (frases do grupo, ini, fim)
-    if len(tr) == len(fr):
-        grupos = [([f], a, b) for f, (a, b) in zip(fr, tr)]
-    else:
-        # menos trechos que frases: distribui frases pelos trechos por sílabas
-        sy = [sum(silabas(w) for w in re.findall(r"\w+", f)) for f in fr]
-        alvo = np.cumsum(sy) / sum(sy)
-        durs = np.array([b - a for a, b in tr]); acc = np.cumsum(durs) / durs.sum()
-        idx = [int(np.searchsorted(acc, x - 1e-9)) for x in alvo]
-        for ti, (a, b) in enumerate(tr):
-            fs = [f for f, j in zip(fr, idx) if j == ti]
-            if fs:
-                grupos.append((fs, a, b))
+    voz = np.array([b - a for a, b in tr]); V = voz.sum()
+    acc = np.concatenate([[0], np.cumsum(voz)]) / V  # fração de voz no início de cada trecho
+    # fronteiras de frase: índice da palavra que começa depois de pontuação
+    fronteiras = [i for i in range(1, len(ws)) if re.search(r"[.,:;?!…—]$", ws[i - 1])]
+    usados, cortes = set(), []  # (índice da palavra, índice do silêncio)
+    for g in range(1, len(tr)):
+        cand = [(abs(cum[i] - acc[g]), i) for i in fronteiras if i not in usados]
+        if cand:
+            d, i = min(cand)
+            if d < 0.18:
+                usados.add(i); cortes.append((i, g))
+    cortes.sort()
+    # monta grupos: palavras [w0, w1) ocupam os trechos [g0, g1)
+    limites_w = [0] + [i for i, _ in cortes] + [len(ws)]
+    limites_g = [0] + [g for _, g in cortes] + [len(tr)]
     palavras = []
-    for fs, a, b in grupos:
-        ws = [w for f in fs for w in f.split()]
-        pesos = np.array([max(1, silabas(w)) + 0.4 for w in ws])
-        lim = a + (b - a) * np.concatenate([[0], np.cumsum(pesos) / pesos.sum()])
-        for w, x0, x1 in zip(ws, lim[:-1], lim[1:]):
-            palavras.append({"w": w, "t0": round(x0 - t0, 3), "t1": round(x1 - t0, 3)})
+    for k in range(len(limites_w) - 1):
+        w0, w1 = limites_w[k], limites_w[k + 1]
+        g0, g1 = limites_g[k], limites_g[k + 1]
+        if g1 <= g0:  # dois cortes no mesmo silêncio (não deve acontecer): usa o trecho anterior
+            g0 = max(0, g1 - 1)
+        segs = tr[g0:g1]
+        vz = np.array([b - a for a, b in segs]); Vg = vz.sum()
+        ac = np.concatenate([[0], np.cumsum(vz)])
+        pw = pesos[w0:w1]; cw = np.concatenate([[0], np.cumsum(pw)]) / pw.sum() * Vg
+
+        def real(v):  # posição em tempo de voz -> tempo real
+            j = min(int(np.searchsorted(ac, v, side="right")) - 1, len(segs) - 1)
+            return segs[j][0] + (v - ac[j])
+
+        for i, w in enumerate(ws[w0:w1]):
+            palavras.append({"w": w, "t0": round(real(cw[i]) - t0, 3), "t1": round(real(cw[i + 1] - 1e-6) - t0, 3)})
     return palavras
 
 

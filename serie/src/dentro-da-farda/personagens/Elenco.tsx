@@ -18,7 +18,7 @@ import { tema } from "../tema";
 
 const C = tema.cor;
 
-export type Objeto = "celular" | "celularAceso" | "lanterna" | "pasta" | null;
+export type Objeto = "celular" | "celularAceso" | "lanterna" | "pasta" | "chave" | null;
 
 type PersonagemProps = Omit<BonecoProps, "atras" | "corpo" | "roupa" | "proporcoes"> & {
   /** objeto na mão esquerda do boneco (a da frente, no perfil) */
@@ -64,6 +64,15 @@ const objetoNaMao = (o: Objeto, b: [V, V, V], chapado: string | null) => {
       <NaMao b={b}>
         <rect x={-6} y={-9} width={40} height={18} rx={5} fill={escuro} />
         <rect x={30} y={-12} width={10} height={24} rx={3} fill={chapado ?? "#2A303C"} />
+      </NaMao>
+    );
+  }
+  if (o === "chave") {
+    return (
+      <NaMao b={b}>
+        <rect x={-4} y={-14} width={26} height={30} rx={8} fill={escuro} />
+        <rect x={20} y={-4} width={30} height={9} rx={3} fill={chapado ?? "#9AA3B0"} />
+        <rect x={40} y={4} width={6} height={8} fill={chapado ?? "#9AA3B0"} />
       </NaMao>
     );
   }

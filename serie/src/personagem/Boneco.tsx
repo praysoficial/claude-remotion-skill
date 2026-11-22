@@ -266,7 +266,7 @@ export const Boneco: React.FC<BonecoProps> = ({
           )}
           {luz.deBaixo ? (
             <linearGradient id={`brilho${id}`} gradientUnits="userSpaceOnUse" x1={0} y1={-altura * 0.35} x2={0} y2={-altura * 0.75}>
-              <stop offset="0" stopColor={luz.cor} stopOpacity={0.6} />
+              <stop offset="0" stopColor={luz.cor} stopOpacity={0.45} />
               <stop offset="1" stopColor={luz.cor} stopOpacity={0} />
             </linearGradient>
           ) : (

@@ -11,7 +11,7 @@
   },
   "atualizado_em": "2026-11-22",
   "episodio_atual": 1,
-  "status_episodio": "roteiro v2 fechado, aguardando as vozes (ElevenLabs, pelo usuário)",
+  "status_episodio": "episódio 1 renderizado; aguardando publicação e votação",
   "prazo": {
     "dia": 1,
     "total": 31,
@@ -56,6 +56,18 @@
       {
         "id": "aliados_divididos",
         "fato": "Diego defende INTERROGAR; Helena defende SEGUIR."
+      },
+      {
+        "id": "geografia_corredor",
+        "fato": "No corredor da delegacia, a sala de interrogatório fica à esquerda (luz vermelha EM USO) e a saída à direita (placa ciano). A sala do Mendes (CHEFIA) fica no fundo, com relógio digital em cima da porta."
+      },
+      {
+        "id": "relogio",
+        "fato": "O dilema acontece às 21:47; a testemunha sai às 22:00."
+      },
+      {
+        "id": "celular_arthur",
+        "fato": "A cópia do áudio está no celular do próprio Arthur, no bolso de trás."
       }
     ]
   },
@@ -160,17 +172,28 @@
       "ep01_26_narrador.mp3",
       "ep01_27_narrador.mp3"
     ],
-    "vozes_recebidas": [],
+    "vozes_recebidas": [
+      "narrador.mp3",
+      "arthur.mp3",
+      "diego.mp3",
+      "mendes.mp3",
+      "helena.mp3",
+      "victor.mp3 (ElevenLabs, um arquivo por personagem, separados em 27 falas)"
+    ],
     "ambiente_conferido": {
       "remotion": "4.0.545 instalado e renderizando (teste anterior ok)",
       "chromium": "headless shell do Playwright funciona com o Remotion",
       "ffmpeg": "disponível no sistema",
       "espeak_ng": "instalado; serve só para voz-guia de teste, nunca como voz final",
-      "alinhamento_por_palavra": "modelos de reconhecimento de fala bloqueados pela rede; o ElevenLabs pode exportar o tempo por caractere/palavra; sem isso, marco os tempos pela forma de onda"
+      "alinhamento_por_palavra": "sem reconhecimento de fala (modelos bloqueados). Tempo por palavra estimado pela forma de onda: silêncios casados com a pontuação e palavras distribuídas por sílabas dentro do tempo com voz.",
+      "render": "Remotion 4.0.545 + chrome-headless-shell do Playwright; fontes locais em public/fontes"
     },
-    "vozes_fonte": "geradas pelo usuário no ElevenLabs a partir das vozes de referência dele; nenhuma voz criada aqui"
+    "vozes_fonte": "geradas pelo usuário no ElevenLabs a partir das vozes de referência dele; nenhuma voz criada aqui",
+    "duracao_final_s": 109.67,
+    "frames": 3291,
+    "pasta_do_episodio": "serie/episodios/dentro-da-farda/ep01/"
   },
-  "roteiro_atual": "ep01_roteiro_v2.md",
+  "roteiro_atual": "ep01_roteiro_v2.md (texto) + episodios/dentro-da-farda/ep01/roteiro_final.md (com tempos reais)",
   "fontes": {
     "briefing_mestre": "recebido na conversa",
     "pacote_citado_nao_encontrado": [
@@ -187,33 +210,39 @@
     "arthur": {
       "idade": 24,
       "papel": "protagonista",
-      "traços": "inteligente, impulsivo, desobedece quando acha que deve"
+      "traços": "inteligente, impulsivo, desobedece quando acha que deve",
+      "marca_visual": "topete arrepiado"
     },
     "helena": {
       "idade": 31,
       "papel": "investigadora, parceira",
       "traços": "observadora, cautelosa",
-      "segredo": "ligação antiga com o caso (não revelada)"
+      "segredo": "ligação antiga com o caso (não revelada)",
+      "marca_visual": "rabo de cavalo"
     },
     "mendes": {
       "idade": 52,
       "papel": "chefe da unidade",
       "traços": "autoritário, aparentemente protetor",
-      "segredo": "intenções construídas aos poucos"
+      "segredo": "intenções construídas aos poucos",
+      "marca_visual": "o maior do elenco, gravata escura"
     },
     "diego": {
       "idade": 26,
       "papel": "policial, amigo do Arthur",
-      "traços": "leal, corajoso, espontâneo, age sem pensar"
+      "traços": "leal, corajoso, espontâneo, age sem pensar",
+      "marca_visual": "boné virado pra trás"
     },
     "victor": {
       "idade": 45,
       "papel": "empresário desaparecido",
-      "traços": "respeitável na aparência, conexões perigosas"
+      "traços": "respeitável na aparência, conexões perigosas",
+      "marca_visual": "sobretudo de gola alta, aparece em lembrança com tom ciano"
     },
     "seguranca": {
       "papel": "testemunha (coadjuvante mudo)",
-      "traços": "capuz, imóvel, não fala"
+      "traços": "capuz, imóvel, não fala",
+      "marca_visual": "capuz"
     }
   }
 }
