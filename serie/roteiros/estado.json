@@ -1,0 +1,120 @@
+{
+  "serie": "31 DIAS",
+  "atualizado_em": "2026-11-22",
+  "dia_atual": 0,
+  "proximo_episodio": 1,
+  "status_caio": "ativo",
+
+  "medidores": {
+    "evidencia": 0,
+    "risco": 1,
+    "carreira": 3,
+    "confianca": { "helena": 0, "jairo": 1, "lia": -1 },
+    "custos_pagos": 0,
+    "limites": {
+      "evidencia": [0, 10],
+      "risco": [0, 5],
+      "carreira": [0, 3],
+      "confianca": [-2, 2]
+    }
+  },
+
+  "flags": {
+    "login_correg": false,
+    "conhece_lia": false,
+    "doc_falso": false,
+    "copia_segura": false,
+    "camera_quarto": false,
+    "acesso_arquivo": false,
+    "mentira_jairo": false,
+    "gravacao_ilegal": false,
+    "viu_jairo_brito": false,
+    "caderno": false,
+    "ernesto_testemunha": false,
+    "jairo_testemunha": false,
+    "helena_aliada": false,
+    "sabe_galpao": false,
+    "aceitou_oferta": false
+  },
+
+  "canone": {
+    "regra": "Cânone é o que não muda mais. 'exibido' é o que já foi ao ar, e o roteiro nunca pode contradizer isso. 'travado' é a verdade decidida pelos roteiristas: o voto muda quando e como ela aparece, nunca o que ela é.",
+    "exibido": [],
+    "travado": [
+      { "id": "caso", "fato": "R$ 40 milhões sumiram do depósito de provas do Fórum Central. O cofre foi aberto com a senha, sem arrombamento.", "publico_sabe": false, "revelar_em": 1 },
+      { "id": "sergio", "fato": "O vigia Sérgio Torres morreu ao pé de uma escada. O caso foi registrado como acidente, mas foi homicídio.", "publico_sabe": false, "revelar_em": 1 },
+      { "id": "prazo", "fato": "Em 31 dias o caso vai para a PF e a UCE é extinta.", "publico_sabe": false, "revelar_em": 1 },
+      { "id": "quatro_minutos", "fato": "As câmeras foram desligadas de 23h43 a 23h47 por um login da Corregedoria (CORREG-02).", "publico_sabe": false, "revelar_em": 1 },
+      { "id": "lista", "fato": "A Lista: policiais pagam um 'seguro' mensal a Saraiva para não serem investigados pela Corregedoria.", "publico_sabe": false, "revelar_em": 13 },
+      { "id": "motivo_roubo", "fato": "O cofre foi esvaziado para esconder que já tinha sido desviado aos poucos antes de uma auditoria.", "publico_sabe": false, "revelar_em": 29 },
+      { "id": "assassino", "fato": "Brito empurrou Sérgio e levou o celular dele. Saraiva deu a ordem ('sem testemunha').", "publico_sabe": false, "revelar_em": 21 },
+      { "id": "jairo", "fato": "Jairo paga a Lista e dirigiu a viatura sem placa. Não sabia que haveria uma morte. Foi colocado ao lado de Caio para vigiá-lo.", "publico_sabe": false, "revelar_em": 22 },
+      { "id": "helena", "fato": "Helena sabe que a Lista existe e tolerou para proteger a UCE. Não participou do roubo.", "publico_sabe": false, "revelar_em": 13 },
+      { "id": "ernesto", "fato": "Ernesto Lemos, pai de Caio, foi expulso há 10 anos por Saraiva por se recusar a pagar.", "publico_sabe": false, "revelar_em": 16 },
+      { "id": "transferencia", "fato": "Saraiva aprovou a transferência de Caio por achar que um novato não acharia nada e porque o pai lhe serve de alavanca.", "publico_sabe": false, "revelar_em": 27 },
+      { "id": "galpao", "fato": "O dinheiro está num galpão na zona portuária.", "publico_sabe": false, "revelar_em": 26 },
+      { "id": "moura_vivo", "fato": "Moura não morreu. Está preso no galpão como garantia da Lista.", "publico_sabe": false, "revelar_em": 29 },
+      { "id": "marcas_visuais", "fato": "Marcas fixas: Caio tem o cordão dourado, Helena o coque e o sobretudo bordô, Jairo o boné virado e o copo laranja, Saraiva não respira e Lia tem o capuz e o celular aceso. Brito manca.", "publico_sabe": false, "revelar_em": 1 }
+    ]
+  },
+
+  "plano": {
+    "regra": "O plano pode mudar com os votos. Os pilares acontecem sempre e só muda a forma. Ver temporada.md para cada dia.",
+    "pilares": [
+      { "dia": 1, "evento": "Caio recebe o caso e acha os quatro minutos faltando" },
+      { "dia": 5, "evento": "Foto do Caio dormindo no monitor: primeira ameaça" },
+      { "dia": 8, "evento": "Última mensagem do Sérgio: 'dois de farda, um eu conheço'" },
+      { "dia": 12, "evento": "Moura desaparece" },
+      { "dia": 15, "evento": "Vídeo dos quatro minutos: boné virado e figura imóvel (meio da temporada)" },
+      { "dia": 19, "evento": "Dinheiro plantado no armário; Caio perde o distintivo" },
+      { "dia": 22, "evento": "Jairo dirigiu a viatura" },
+      { "dia": 25, "evento": "Apartamento da Lia invadido; HD do backup levado" },
+      { "dia": 27, "evento": "Oferta do Saraiva" },
+      { "dia": 29, "evento": "Clímax no galpão; Moura vivo" },
+      { "dia": 31, "evento": "Final por medidores" }
+    ],
+    "finais": {
+      "luz": "Ev >= 8, Ca >= 1, dois ou mais aliados com Conf >= 1, e não aceitou a oferta (ou foi revertida)",
+      "sombra": "Aceitou a oferta no dia 27 sem reversão, ou Ev < 5",
+      "queda": "Qualquer outro caso"
+    },
+    "custos_por_risco_5": [
+      "1: quarto do Caio revirado, computador levado (Ev -1)",
+      "2: Lia ferida, fora por três episódios",
+      "3: Jairo morto (irreversível)"
+    ],
+    "regras_de_voto": {
+      "janela_horas": 18,
+      "empate": "vence a opção de maior risco",
+      "voto_desequilibrado": "mais de 80% numa opção faz o custo dela aparecer maior no dia seguinte"
+    }
+  },
+
+  "pontas_em_aberto": [
+    { "id": "quem_desligou", "pergunta": "Quem desligou as câmeras nos quatro minutos?", "abre_no_dia": 1, "fechar_ate": 15, "resposta_planejada": "login CORREG-02, da equipe de Saraiva", "status": "planejada" },
+    { "id": "acidente", "pergunta": "Sérgio caiu ou foi empurrado?", "abre_no_dia": 1, "fechar_ate": 21, "resposta_planejada": "empurrado por Brito", "status": "planejada" },
+    { "id": "senha", "pergunta": "Quem mandou trocar a senha do cofre?", "abre_no_dia": 3, "fechar_ate": 16, "resposta_planejada": "pedido feito pelo sistema da Corregedoria", "status": "planejada" },
+    { "id": "foto_quarto", "pergunta": "Quem entrou no quarto do Caio?", "abre_no_dia": 5, "fechar_ate": 21, "resposta_planejada": "Brito (manca, aparece na câmera se camera_quarto)", "status": "planejada" },
+    { "id": "conheci_seu_pai", "pergunta": "Por que Saraiva diz 'conheci seu pai'?", "abre_no_dia": 7, "fechar_ate": 16, "resposta_planejada": "ele expulsou Ernesto há 10 anos", "status": "planejada" },
+    { "id": "um_eu_conheco", "pergunta": "Quem é o 'de farda que eu conheço' da mensagem do Sérgio?", "abre_no_dia": 8, "fechar_ate": 22, "resposta_planejada": "Jairo, que fazia ronda no Fórum e conhecia Sérgio", "status": "planejada" },
+    { "id": "moura", "pergunta": "Moura está vivo?", "abre_no_dia": 12, "fechar_ate": 29, "resposta_planejada": "sim, preso no galpão", "status": "planejada" },
+    { "id": "jp", "pergunta": "J.P. no caderno é o Jairo?", "abre_no_dia": 13, "fechar_ate": 22, "resposta_planejada": "sim", "status": "planejada" },
+    { "id": "figura_imovel", "pergunta": "Quem é a figura que não se mexe no vídeo?", "abre_no_dia": 15, "fechar_ate": 27, "resposta_planejada": "Saraiva", "status": "planejada" },
+    { "id": "armario", "pergunta": "Quem plantou o dinheiro no armário do Caio?", "abre_no_dia": 19, "fechar_ate": 24, "resposta_planejada": "Brito, com a chave cedida pela Corregedoria na busca", "status": "planejada" },
+    { "id": "por_que_caio", "pergunta": "Por que um novato recebeu o maior caso da unidade?", "abre_no_dia": 1, "fechar_ate": 27, "resposta_planejada": "Saraiva aprovou a transferência de propósito", "status": "planejada" }
+  ],
+
+  "votacoes": {
+    "pendente": {
+      "dia": 1,
+      "pergunta": "O que o Caio faz primeiro com os quatro minutos que faltam?",
+      "opcoes": {
+        "A": { "texto": "Conta para a Helena amanhã cedo", "efeitos": { "confianca.helena": 1, "risco": 1 }, "flags": [] },
+        "B": { "texto": "Procura sozinho o técnico das câmeras", "efeitos": { "evidencia": 1, "confianca.jairo": -1 }, "flags": ["login_correg"], "custo_adiado": "Ca -1 no dia 3 (Helena descobre)" },
+        "C": { "texto": "Vai ao velório do vigia", "efeitos": { "confianca.lia": 1 }, "flags": ["conhece_lia"], "custo_adiado": "pista do técnico das câmeras fechada" }
+      },
+      "risco_para_desempate": ["B", "A", "C"]
+    },
+    "historico": []
+  }
+}
