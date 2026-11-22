@@ -1,6 +1,6 @@
 # DENTRO DA FARDA · Episódio 1 · Roteiro final (com tempos reais)
 
-Duração: **01:49.67** (3291 frames a 30 fps). Tempos medidos dos áudios do ElevenLabs; nada foi acelerado.
+Duração: **01:50.28** (3309 frames a 30 fps). Tempos medidos dos áudios do ElevenLabs; nada foi acelerado.
 
 Texto falado idêntico ao `ep01_roteiro_v2.md`. O que mudou na produção está em `relatorio.md`.
 
@@ -21,7 +21,7 @@ Arthur de frente, iluminado de baixo pelo celular, câmera aproximando. Em 'na p
 
 - **00:22.22** · 07 · **NARRADOR**: Esse é o Arthur. Vinte e quatro anos, primeiro caso de verdade. E a primeira prova dele pede pra não chegar… na polícia.
 
-## 00:29.77–00:51.45 · Sala do Mendes
+## 00:29.77–00:53.44 · Sala do Mendes
 
 Persiana com listras da luz da rua, abajur quente. Mendes sentado atrás da mesa (gravata), Arthur em pé à esquerda, de perfil. A pasta do caso desliza pela mesa. Em 'trinta e um dias' a câmera fecha no Mendes e entra o contador DIA 1/31. Arthur dá meio passo ('E depois?'). Mendes estende a mão. Arthur leva a mão ao bolso e trava. 'Agora, Arthur.' — a câmera fecha. Arthur entrega o celular; Mendes fecha a mão e guarda. Arthur sai e toca o bolso de trás: brilho ciano do próprio celular (a cópia).
 
@@ -32,36 +32,35 @@ Persiana com listras da luz da rua, abajur quente. Mendes sentado atrás da mesa
 - **00:43.44** · 12 · **MENDES**: Agora, Arthur.
 - **00:45.30** · 13 · **NARRADOR**: Trinta e um dias. Depois, caso fechado e provas sumidas. O celular, ele entregou. O áudio… já tinha copiado.
 
-## 00:51.45–01:03.57 · Corredor da delegacia
+## 00:53.44–01:05.83 · Corredor da delegacia
 
 Perspectiva; à esquerda a sala de interrogatório (luz vermelha EM USO), à direita a SAÍDA (ciano). Helena encostada na parede, braços cruzados. Arthur entra pela direita e trava no meio do passo. Em 'Apaga.' ela aponta o bolso dele. Ela vira e anda; ele avança com a mão estendida ('Você conhecia o Victor?'). Ela para de costas. 2 s de silêncio, a lâmpada falha. Ela sai. A câmera fecha no Arthur, que murcha.
 
-- **00:51.75** · 14 · **HELENA**: Você copiou o áudio.
-- **00:53.46** · 15 · **ARTHUR**: Como é que você sabe?
-- **00:54.77** · 16 · **HELENA**: Porque eu teria copiado. Apaga. Hoje.
-- **00:58.56** · 17 · **ARTHUR**: Você conhecia o Victor?
-- **01:01.55** · 18 · **NARRADOR**: Ela não respondeu. Guarda essa.
+- **00:53.74** · 14 · **HELENA**: Você copiou o áudio.
+- **00:55.45** · 15 · **ARTHUR**: Como é que você sabe?
+- **00:56.76** · 16 · **HELENA**: Porque eu teria copiado. Apaga. Hoje.
+- **01:00.55** · 17 · **ARTHUR**: Você conhecia o Victor?
+- **01:03.54** · 18 · **NARRADOR**: Ela não respondeu. Guarda essa.
 
-## 01:03.57–01:24.96 · Corredor da delegacia
+## 01:05.83–01:25.57 · Corredor da delegacia
 
 Close na janela da sala de interrogatório: o segurança de capuz, imóvel. Abre para o corredor quando o Diego entra gesticulando. A porta do fundo (CHEFIA) abre: Mendes, pequeno na luz quente, manda soltar às dez; a porta fecha. Close no relógio digital 21:47. Volta: Arthur de frente no centro, Diego à esquerda apontando a sala de interrogatório, Helena entra pela direita e põe a mão no ombro dele, inclinando a cabeça para a saída.
 
-- **01:03.87** · 19 · **NARRADOR**: A única testemunha: o segurança do estacionamento. O Diego trouxe ele. Do jeito do Diego.
-- **01:09.35** · 20 · **DIEGO**: Três horas sem abrir a boca. Nem água ele pediu.
-- **01:12.93** · 21 · **MENDES**: Solta ele às dez. Não tem nada contra ele.
-- **01:16.12** · 22 · **NARRADOR**: Treze minutos. Duas jogadas.
-- **01:18.85** · 23 · **DIEGO**: Entra lá agora. Eu seguro a porta.
-- **01:21.11** · 24 · **HELENA**: Deixa ele sair. Quem tá com medo liga pra alguém.
+- **01:06.13** · 19 · **NARRADOR**: A única testemunha: o segurança do estacionamento. O Diego trouxe ele. Do jeito do Diego.
+- **01:11.79** · 20 · **DIEGO**: Três horas sem abrir a boca. Nem água ele pediu.
+- **01:15.37** · 21 · **MENDES**: Solta ele às dez. Não tem nada contra ele.
+- **01:19.46** · 23 · **DIEGO**: Entra lá agora. Eu seguro a porta.
+- **01:21.72** · 24 · **HELENA**: Deixa ele sair. Quem tá com medo liga pra alguém.
 
-## 01:24.96–01:40.05 · Tela dividida: interrogatório (em cima) / rua (embaixo)
+## 01:25.57–01:40.66 · Tela dividida: interrogatório (em cima) / rua (embaixo)
 
 Duas metades do mesmo tamanho e da mesma duração. INTERROGAR (vermelho, em cima): Arthur abre a porta, encara o segurança sentado; em 'quem está por trás' a persiana da janela se abre — alguém olha. SEGUIR (ciano, embaixo): o segurança fuma na calçada da delegacia; Arthur espia atrás do poste; um carro passa; em 'se for visto' o segurança vira para o lado dele. A metade inativa fica apagada.
 
-- **01:25.29** · 25 · **NARRADOR**: Interrogar: entrar agora, contra a ordem do Mendes. Pode sair com um nome, mas quem está por trás fica sabendo.
-- **01:32.71** · 26 · **NARRADOR**: Seguir: deixar ele sair e ir atrás. Pode descobrir pra quem ele trabalha, mas se for visto, perde a testemunha.
+- **01:25.90** · 25 · **NARRADOR**: Interrogar: entrar agora, contra a ordem do Mendes. Pode sair com um nome, mas quem está por trás fica sabendo.
+- **01:33.32** · 26 · **NARRADOR**: Seguir: deixar ele sair e ir atrás. Pode descobrir pra quem ele trabalha, mas se for visto, perde a testemunha.
 
-## 01:40.05–01:49.67 · Corredor da delegacia
+## 01:40.66–01:50.28 · Corredor da delegacia
 
 Arthur de frente entre a porta do interrogatório (vermelho) e a saída (ciano), com a pasta numa mão e a chave do carro na outra; pesa uma, pesa a outra, encara a câmera. Em 'Escreve' entra a cartela: INTERROGAR | SEGUIR, mesmo tamanho, mesma entrada, e 'Escreva nos comentários'. A imagem segura 3,2 s no voto. Fim.
 
-- **01:40.43** · 27 · **NARRADOR**: Ele decide em treze minutos. Vocês, nos comentários. Escreve: interrogar… ou seguir.
+- **01:41.04** · 27 · **NARRADOR**: Ele decide em treze minutos. Vocês, nos comentários. Escreve: interrogar… ou seguir.

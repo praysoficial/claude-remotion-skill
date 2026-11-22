@@ -55,7 +55,7 @@ Este relatório diz o que foi executado e conferido, e também o que **não** fo
   Todas falhavam porque não sabiam o que estava sendo dito.
 - **Arquivos de conferência:** `audio/verificacao_cortes_das_falas.png` (cortes) e `verificacao_legendas_sobre_a_voz.png` (início de cada bloco sobre a voz).
 
-**Duração.** As vozes somam cerca de 90 s. Com as pausas e os 3,2 s finais no voto, o episódio tem **1:49,7**. Nenhuma voz foi acelerada e nenhuma pausa dentro das falas foi cortada. Só as pausas entre falas foram ajustadas. É mais longo que os 60 a 75 s ideais para Reels; para encurtar, o caminho é regravar o narrador num ritmo mais rápido.
+**Duração.** As vozes somam cerca de 90 s. Com as pausas e os 3,2 s finais no voto, o episódio tem **1:50,3**. Nenhuma voz foi acelerada e nenhuma pausa dentro das falas foi cortada. Só as pausas entre falas foram ajustadas. É mais longo que os 60 a 75 s ideais para Reels; para encurtar, o caminho é regravar o narrador num ritmo mais rápido.
 
 **Equilíbrio do voto.** INTERROGAR (fala 25) dura 7,00 s e SEGUIR (fala 26) dura 7,02 s. As duas metades da tela ficam 7,42 s cada.
 
@@ -112,16 +112,16 @@ Este relatório diz o que foi executado e conferido, e também o que **não** fo
 ## 6. Verificação do vídeo final
 
 - **Arquivo:** `dentro_da_farda_ep01.mp4`, 32 MB.
-  - Vídeo: H.264 High, 1080×1920, 30 fps, **3291 quadros** (o mesmo número da timeline), `yuv420p` em faixa de cor padrão (BT.709). O render saiu em `yuvj420p` (faixa completa) e foi convertido para evitar alteração de contraste no Instagram; o brilho médio mudou menos de 1 em 255.
+  - Vídeo: H.264 High, 1080×1920, 30 fps, **3309 quadros** (o mesmo número da timeline), `yuv420p` em faixa de cor padrão (BT.709). O render saiu em `yuvj420p` (faixa completa) e foi convertido para evitar alteração de contraste no Instagram; o brilho médio mudou menos de 1 em 255.
   - Áudio: AAC 48 kHz estéreo. Volume integrado −15,3 LUFS.
-  - Duração: 1:49,7.
+  - Duração: 1:50,3.
 - **Sincronia do áudio no MP4 final**, medida por correlação contra a mixagem: 0 ms de deslocamento nos trechos 5–15 s, 50–60 s e 95–105 s.
 - **12 quadros extraídos do MP4 final** nos mesmos tempos do storyboard (`storyboard/quadros_do_mp4_final.png`): todas as correções presentes, nenhum texto cortado, contador visível desde o prazo, legendas fora dos personagens nas cenas de diálogo.
 - **Último quadro (109,65 s):** parado no voto, com INTERROGAR | SEGUIR, "O QUE O ARTHUR FAZ?" e "Escreva nos comentários". Nada vem depois do voto.
 
 ## 7. Limites conhecidos (honestamente)
 
-- **Duração:** 1:49,7 é mais longo que o ideal para Reels. O ritmo vem das vozes; encurtar exige regravar com um ritmo mais rápido ou cortar texto.
+- **Duração:** 1:50,3 é mais longo que o ideal para Reels. O ritmo vem das vozes; encurtar exige regravar com um ritmo mais rápido ou cortar texto.
 - **Fala 22 ausente na gravação do narrador:** o episódio está sem "Treze minutos. Duas jogadas.". O prazo de 13 minutos continua claro pelo relógio (21:47), pela ordem do Mendes ("Solta ele às dez") e pela fala final ("Ele decide em treze minutos").
 - **Não ouvido:** não consigo ouvir. A interpretação das vozes, eventuais erros de leitura do ElevenLabs e o resultado estético da trilha sintetizada precisam da sua escuta antes de publicar.
 - **Movimento conferido por quadros:** os movimentos foram conferidos em quadros soltos e na animática, não assistindo em tempo real. Caminhadas e viradas de perfil para frente são simples (a virada é um corte de pose, sem quadros intermediários).
