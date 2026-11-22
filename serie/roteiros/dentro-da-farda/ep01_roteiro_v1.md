@@ -1,5 +1,7 @@
 # DENTRO DA FARDA · Episódio 1 · Roteiro
 
+> **Substituído pelo `ep01_roteiro_v2.md`.** O elenco mudou com o briefing mestre (Arthur, Helena, Mendes, Diego e Victor). Guardado só como histórico.
+
 | | |
 |---|---|
 | **Formato** | 1080×1920, 30 fps, Reels e Shorts |

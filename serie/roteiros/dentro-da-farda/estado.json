@@ -1,70 +1,164 @@
 {
   "serie": "Dentro da Farda",
-  "formato": { "largura": 1080, "altura": 1920, "fps": 30, "plataformas": ["Reels", "Shorts"] },
+  "formato": {
+    "largura": 1080,
+    "altura": 1920,
+    "fps": 30,
+    "plataformas": [
+      "Reels",
+      "Shorts"
+    ]
+  },
   "atualizado_em": "2026-11-22",
   "episodio_atual": 1,
-  "status_episodio": "roteiro fechado, aguardando vozes",
-  "prazo": { "dia": 1, "total": 31, "contador_na_tela": "DIA 1/31" },
-
+  "status_episodio": "roteiro v2 fechado, aguardando as vozes (ElevenLabs, pelo usuário)",
+  "prazo": {
+    "dia": 1,
+    "total": 31,
+    "contador_na_tela": "DIA 1/31"
+  },
   "canone": {
     "regra": "'exibido' é só o que já foi ao ar, e nunca pode ser contradito. 'travado' é o que o roteiro do episódio 1 estabelece; entra em 'exibido' quando o episódio for publicado.",
     "exibido": [],
     "travado": [
-      { "id": "arthur", "fato": "Arthur tem 24 anos, três semanas de farda e quer ser investigador. Único caso resolvido: o grampeador do 3º andar, que estava na gaveta dele." },
-      { "id": "marca_arthur", "fato": "Arthur usa um quepe grande demais, que escorrega, e anda com um caderninho." },
-      { "id": "bastos", "fato": "Sargento Bastos, chefe do depósito de provas. Tronco largo, molho de chaves enorme e lanterna. Tem 30 anos de casa." },
-      { "id": "caixa_31b", "fato": "Bastos tirou a caixa 31-B (Operação Lacre) do depósito à noite e a pôs no porta-malas de um carro sem placa." },
-      { "id": "operacao_lacre", "fato": "A Operação Lacre é a única investigação de corrupção dentro da delegacia." },
-      { "id": "prazo", "fato": "Em 31 dias a investigação é encerrada e o material vai para incineração (ofício na porta do depósito)." },
-      { "id": "manequim", "fato": "Existe um manequim de treino com colete no depósito. Bastos confundiu Arthur com ele." },
-      { "id": "bastos_nao_viu", "fato": "Bastos não sabe que Arthur viu. Ele acha que tocou no manequim." },
-      { "id": "guarda", "fato": "O guarda do portão viu Bastos sair e acenou, como se fosse normal." }
+      {
+        "id": "victor_sumido",
+        "fato": "Victor Sales, empresário, sumido há três dias. O carro dele ficou no estacionamento subterrâneo com a porta aberta."
+      },
+      {
+        "id": "audio_victor",
+        "fato": "No celular do Victor há um áudio não enviado: 'Se alguém achar isso… não leva pra delegacia. Tem gente lá dentro que—'"
+      },
+      {
+        "id": "prazo",
+        "fato": "Mendes dá 31 dias; depois o caso é arquivado por 'ordem de cima'."
+      },
+      {
+        "id": "celular_com_mendes",
+        "fato": "Arthur entregou o celular do Victor ao Mendes, mas copiou o áudio antes."
+      },
+      {
+        "id": "helena_sabe_da_copia",
+        "fato": "Helena deduziu que Arthur copiou o áudio e mandou apagar."
+      },
+      {
+        "id": "helena_nao_respondeu",
+        "fato": "Arthur perguntou se Helena conhecia o Victor. Ela não respondeu."
+      },
+      {
+        "id": "testemunha",
+        "fato": "O segurança do estacionamento é a única testemunha. Diego o trouxe; ele passou três horas calado e nem pediu água."
+      },
+      {
+        "id": "soltura",
+        "fato": "Mendes mandou soltar a testemunha às 22:00. O dilema acontece às 21:47."
+      },
+      {
+        "id": "aliados_divididos",
+        "fato": "Diego defende INTERROGAR; Helena defende SEGUIR."
+      }
     ]
   },
-
   "plano": {
     "regra": "Plano pode mudar. O episódio 2 só é escrito depois do voto e precisa cumprir a promessa feita na tela para a opção vencedora: a mesma vantagem e o mesmo risco.",
     "promessas_do_ep1": {
       "INTERROGAR": {
-        "acao": "amanhã cedo, chamar o Bastos para a sala de interrogatório",
-        "se_der_certo": "sai de lá com um nome",
-        "se_der_errado": "a delegacia inteira sabe que o novato anda perguntando"
+        "acao": "entrar agora na sala, contra a ordem do Mendes",
+        "se_der_certo": "sai com um nome",
+        "custo": "quem está por trás fica sabendo"
       },
       "SEGUIR": {
-        "acao": "hoje à noite, ir atrás do carro do Bastos",
-        "se_der_certo": "descobre para onde vão as provas",
-        "se_der_errado": "fica sozinho num lugar que não conhece"
+        "acao": "deixar o segurança sair e ir atrás",
+        "se_der_certo": "descobre pra quem ele trabalha",
+        "custo": "se for visto, perde a testemunha"
       }
     },
-    "ep02": { "status": "a escrever depois do voto", "opcao_vencedora": null }
+    "ep02": {
+      "status": "a escrever depois do voto",
+      "opcao_vencedora": null
+    }
   },
-
   "pontas_em_aberto": [
-    { "id": "conteudo_31b", "pergunta": "O que exatamente tem na caixa 31-B?", "abre_no_ep": 1 },
-    { "id": "destino", "pergunta": "Para onde o Bastos está levando as provas?", "abre_no_ep": 1 },
-    { "id": "mandante", "pergunta": "Bastos age sozinho ou para alguém?", "abre_no_ep": 1 },
-    { "id": "carro_sem_placa", "pergunta": "De quem é o carro sem placa?", "abre_no_ep": 1 },
-    { "id": "oficio", "pergunta": "Quem assinou o ofício de encerramento e incineração, e por que em 31 dias?", "abre_no_ep": 1 },
-    { "id": "guarda", "pergunta": "O guarda do portão acenou por costume ou porque sabe?", "abre_no_ep": 1 },
-    { "id": "rede", "pergunta": "Quem mais faz parte da rede dentro da delegacia?", "abre_no_ep": 1 }
+    {
+      "id": "gente_la_dentro",
+      "pergunta": "Quem é a 'gente lá dentro' do áudio do Victor?",
+      "abre_no_ep": 1
+    },
+    {
+      "id": "victor_onde",
+      "pergunta": "Onde está o Victor, e ele está vivo?",
+      "abre_no_ep": 1
+    },
+    {
+      "id": "mendes_celular",
+      "pergunta": "Por que o Mendes quis o celular na hora?",
+      "abre_no_ep": 1
+    },
+    {
+      "id": "ordem_de_cima",
+      "pergunta": "De quem é a 'ordem de cima' para arquivar em 31 dias?",
+      "abre_no_ep": 1
+    },
+    {
+      "id": "helena_victor",
+      "pergunta": "Helena conhecia o Victor?",
+      "abre_no_ep": 1
+    },
+    {
+      "id": "seguranca_patrao",
+      "pergunta": "Para quem o segurança trabalha, e por que não fala?",
+      "abre_no_ep": 1
+    },
+    {
+      "id": "soltar_testemunha",
+      "pergunta": "Por que o Mendes manda soltar a única testemunha?",
+      "abre_no_ep": 1
+    }
   ],
-
   "votacao": {
     "episodio": 1,
     "status": "não publicada",
-    "opcoes": ["INTERROGAR", "SEGUIR"],
+    "opcoes": [
+      "INTERROGAR",
+      "SEGUIR"
+    ],
     "ordem_na_tela": "INTERROGAR à esquerda (vermelho), SEGUIR à direita (ciano)",
     "como_contar": "comentários que contêm a palavra INTERROGAR ou SEGUIR; um voto por conta; comentários com as duas palavras não contam",
     "resultado": null,
-    "contagem": { "INTERROGAR": null, "SEGUIR": null }
+    "contagem": {
+      "INTERROGAR": null,
+      "SEGUIR": null
+    }
   },
-
   "producao": {
     "vozes_esperadas": [
-      "ep01_F01_bastos.wav", "ep01_F02_narrador.wav", "ep01_F03_bastos.wav",
-      "ep01_F04_narrador.wav", "ep01_F05_narrador.wav", "ep01_F06_narrador.wav",
-      "ep01_F07_narrador.wav", "ep01_F08_narrador.wav", "ep01_F09_narrador.wav",
-      "ep01_F10_narrador.wav"
+      "ep01_01_narrador.mp3",
+      "ep01_02_arthur.mp3",
+      "ep01_03_diego.mp3",
+      "ep01_04_victor.mp3",
+      "ep01_05_diego.mp3",
+      "ep01_06_arthur.mp3",
+      "ep01_07_narrador.mp3",
+      "ep01_08_mendes.mp3",
+      "ep01_09_arthur.mp3",
+      "ep01_10_mendes.mp3",
+      "ep01_11_arthur.mp3",
+      "ep01_12_mendes.mp3",
+      "ep01_13_narrador.mp3",
+      "ep01_14_helena.mp3",
+      "ep01_15_arthur.mp3",
+      "ep01_16_helena.mp3",
+      "ep01_17_arthur.mp3",
+      "ep01_18_narrador.mp3",
+      "ep01_19_narrador.mp3",
+      "ep01_20_diego.mp3",
+      "ep01_21_mendes.mp3",
+      "ep01_22_narrador.mp3",
+      "ep01_23_diego.mp3",
+      "ep01_24_helena.mp3",
+      "ep01_25_narrador.mp3",
+      "ep01_26_narrador.mp3",
+      "ep01_27_narrador.mp3"
     ],
     "vozes_recebidas": [],
     "ambiente_conferido": {
@@ -72,7 +166,54 @@
       "chromium": "headless shell do Playwright funciona com o Remotion",
       "ffmpeg": "disponível no sistema",
       "espeak_ng": "instalado; serve só para voz-guia de teste, nunca como voz final",
-      "alinhamento_por_palavra": "BLOQUEADO: modelos do Whisper e do Vosk não baixam (hosts negados pela rede). O pacote vosk instala, mas sem modelo de português não alinha."
+      "alinhamento_por_palavra": "modelos de reconhecimento de fala bloqueados pela rede; o ElevenLabs pode exportar o tempo por caractere/palavra; sem isso, marco os tempos pela forma de onda"
+    },
+    "vozes_fonte": "geradas pelo usuário no ElevenLabs a partir das vozes de referência dele; nenhuma voz criada aqui"
+  },
+  "roteiro_atual": "ep01_roteiro_v2.md",
+  "fontes": {
+    "briefing_mestre": "recebido na conversa",
+    "pacote_citado_nao_encontrado": [
+      "02_BIBLIA_DA_SERIE.md",
+      "03_MAPA_31_DIAS.md",
+      "04_EPISODIO_01.md",
+      "05_GUIA_VISUAL_E_TECNICO.md",
+      "06_CONTINUIDADE_E_VOTACAO.md",
+      "estado_inicial.json"
+    ],
+    "referencia": "vídeo de 66,6 s enviado pelo usuário; usada só a mecânica (prazo, duas opções, próximo episódio responde)"
+  },
+  "personagens": {
+    "arthur": {
+      "idade": 24,
+      "papel": "protagonista",
+      "traços": "inteligente, impulsivo, desobedece quando acha que deve"
+    },
+    "helena": {
+      "idade": 31,
+      "papel": "investigadora, parceira",
+      "traços": "observadora, cautelosa",
+      "segredo": "ligação antiga com o caso (não revelada)"
+    },
+    "mendes": {
+      "idade": 52,
+      "papel": "chefe da unidade",
+      "traços": "autoritário, aparentemente protetor",
+      "segredo": "intenções construídas aos poucos"
+    },
+    "diego": {
+      "idade": 26,
+      "papel": "policial, amigo do Arthur",
+      "traços": "leal, corajoso, espontâneo, age sem pensar"
+    },
+    "victor": {
+      "idade": 45,
+      "papel": "empresário desaparecido",
+      "traços": "respeitável na aparência, conexões perigosas"
+    },
+    "seguranca": {
+      "papel": "testemunha (coadjuvante mudo)",
+      "traços": "capuz, imóvel, não fala"
     }
   }
 }
