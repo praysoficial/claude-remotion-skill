@@ -97,4 +97,18 @@ Este relatório diz o que foi executado e conferido, e também o que **não** fo
 
 ## 6. Verificação do vídeo final
 
-_(preenchido depois do render final, abaixo)_
+- **Arquivo:** `dentro_da_farda_ep01.mp4`, 32 MB.
+  - Vídeo: H.264 High, 1080×1920, 30 fps, **3291 quadros** (o mesmo número da timeline), `yuv420p` em faixa de cor padrão (BT.709). O render saiu em `yuvj420p` (faixa completa) e foi convertido para evitar alteração de contraste no Instagram; o brilho médio mudou menos de 1 em 255.
+  - Áudio: AAC 48 kHz estéreo. Volume integrado −15,3 LUFS.
+  - Duração: 1:49,7.
+- **Sincronia do áudio no MP4 final**, medida por correlação contra a mixagem: 0 ms de deslocamento nos trechos 5–15 s, 50–60 s e 95–105 s.
+- **12 quadros extraídos do MP4 final** nos mesmos tempos do storyboard (`storyboard/quadros_do_mp4_final.png`): todas as correções presentes, nenhum texto cortado, contador visível desde o prazo, legendas fora dos personagens nas cenas de diálogo.
+- **Último quadro (109,65 s):** parado no voto, com INTERROGAR | SEGUIR, "O QUE O ARTHUR FAZ?" e "Escreva nos comentários". Nada vem depois do voto.
+
+## 7. Limites conhecidos (honestamente)
+
+- **Duração:** 1:49,7 é mais longo que o ideal para Reels. O ritmo vem das vozes; encurtar exige regravar com um ritmo mais rápido ou cortar texto.
+- **Tempo por palavra estimado:** sem reconhecimento de fala, a legenda palavra a palavra pode adiantar ou atrasar alguns décimos de segundo em frases longas sem pausa.
+- **Não ouvido:** não consigo ouvir. A interpretação das vozes, eventuais erros de leitura do ElevenLabs e o resultado estético da trilha sintetizada precisam da sua escuta antes de publicar.
+- **Movimento conferido por quadros:** os movimentos foram conferidos em quadros soltos e na animática, não assistindo em tempo real. Caminhadas e viradas de perfil para frente são simples (a virada é um corte de pose, sem quadros intermediários).
+- **Estilo dos personagens:** os bonecos são figuras 2D vetoriais. Não usei o aspecto 3D com sombreamento suave da referência, porque o briefing pede desenho próprio.
