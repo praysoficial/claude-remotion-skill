@@ -33,13 +33,18 @@ ROTEIRO = [
 ]
 SEGURA_VOTO = 3.2  # segundos parados no voto depois da última palavra
 
-linhas, cenas = [], []
+linhas, cenas, ausentes = [], [], []
 t = 0.0
 fim_jogada_a = None
 for cena, itens in ROTEIRO:
     ini_cena = t
     for fid, pausa in itens:
         f = falas[fid]
+        if f.get("ausente"):
+            # fala que não veio na gravação: mantém um respiro no lugar dela (sem legenda)
+            ausentes.append(fid)
+            t += 1.3
+            continue
         if fid == "26":
             # SEGUIR começa quando termina o bloco de INTERROGAR, de mesma duração
             ini = fim_jogada_a
@@ -124,7 +129,7 @@ for i, b in enumerate(legendas):
     prox = legendas[i + 1]["ini"] if i + 1 < len(legendas) else b["fim"] + 0.5
     b["fim"] = round(min(prox - 0.03, b["fim"] + 0.5), 3)
 
-timeline = {"fps": FPS, "duracao": round(total, 3), "frames": math.ceil(total * FPS),
+timeline = {"ausentes": ausentes, "fps": FPS, "duracao": round(total, 3), "frames": math.ceil(total * FPS),
             "cenas": cenas, "falas": linhas, "marcas": M, "legendas": legendas}
 os.makedirs(os.path.join(RAIZ, "src/dentro-da-farda/ep01"), exist_ok=True)
 json.dump(timeline, open(os.path.join(RAIZ, "src/dentro-da-farda/ep01/timeline.json"), "w"), ensure_ascii=False)
@@ -274,7 +279,7 @@ ajustes = []
 for b in timeline["legendas"]:
     d = inicios_voz - b["ini"]
     k = int(np.argmin(np.abs(d)))
-    if abs(d[k]) <= 0.3:
+    if abs(d[k]) <= 0.15:
         novo = round(float(inicios_voz[k]) - 0.05, 3)
         ajustes.append(novo - b["ini"])
         desloc = novo - b["ini"]
@@ -381,6 +386,7 @@ for i, b in enumerate(legendas, 1):
 os.makedirs(os.path.join(RAIZ, "out/dentro-da-farda/ep01"), exist_ok=True)
 open(os.path.join(RAIZ, "out/dentro-da-farda/ep01/ep01.srt"), "w").write("\n".join(srt))
 
+print(f"falas ausentes na gravação: {ausentes or 'nenhuma'}")
 print(f"duração total {total:.2f} s · {math.ceil(total * FPS)} frames · {len(legendas)} legendas")
 for c in cenas:
     print(f"  cena {c['id']:11} {c['ini']:6.2f} → {c['fim']:6.2f}  ({c['fim'] - c['ini']:5.2f} s)")

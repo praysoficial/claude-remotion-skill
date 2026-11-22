@@ -13,9 +13,7 @@ for qi, q in enumerate(quem):
     x = np.frombuffer(raw, np.float32); dur = len(x) / SR
     n = len(x) // W; env = np.abs(x[: n * W]).reshape(W, n).max(1); env /= env.max()
     y0 = qi * H + H // 2
-    linhas = [v for v in d.values() if v["quem"] == q]
-    for r in linhas[0]["bruto_trechos"]:
-        dr.rectangle([int(r[0] / dur * W), y0 + 40, int(r[1] / dur * W), y0 + 44], fill=(90, 90, 110))
+    linhas = [v for v in d.values() if v["quem"] == q and not v.get("ausente")]
     for i, v in enumerate(env):
         dr.line([(i, y0 - v * 38), (i, y0 + v * 38)], fill=(120, 170, 230))
     for v in linhas:

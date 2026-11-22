@@ -185,13 +185,16 @@
       "chromium": "headless shell do Playwright funciona com o Remotion",
       "ffmpeg": "disponível no sistema",
       "espeak_ng": "instalado; serve só para voz-guia de teste, nunca como voz final",
-      "alinhamento_por_palavra": "sem reconhecimento de fala (modelos bloqueados). Tempo por palavra estimado pela forma de onda: silêncios casados com a pontuação e palavras distribuídas por sílabas dentro do tempo com voz.",
+      "alinhamento_por_palavra": "Vosk (vosk-model-small-pt-0.3, de alphacephei.com, liberado no ambiente pessoal 'claude-remotion-skill'): separação das falas e tempo de cada palavra por reconhecimento de fala",
       "render": "Remotion 4.0.545 + chrome-headless-shell do Playwright; fontes locais em public/fontes"
     },
     "vozes_fonte": "geradas pelo usuário no ElevenLabs a partir das vozes de referência dele; nenhuma voz criada aqui",
     "duracao_final_s": 109.67,
     "frames": 3291,
-    "pasta_do_episodio": "serie/episodios/dentro-da-farda/ep01/"
+    "pasta_do_episodio": "serie/episodios/dentro-da-farda/ep01/",
+    "falas_ausentes_na_gravacao": [
+      "22 (NARRADOR): Treze minutos. Duas jogadas."
+    ]
   },
   "roteiro_atual": "ep01_roteiro_v2.md (texto) + episodios/dentro-da-farda/ep01/roteiro_final.md (com tempos reais)",
   "fontes": {

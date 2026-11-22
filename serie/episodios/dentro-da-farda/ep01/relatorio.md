@@ -8,7 +8,7 @@ Este relatório diz o que foi executado e conferido, e também o que **não** fo
 |---|---|
 | `dentro_da_farda_ep01.mp4` | Vídeo final: 1080×1920, 30 fps, H.264 + AAC 256 kbps |
 | `capa_ep01.jpg` | Capa 1080×1920; título e personagem dentro do recorte 4:5 do perfil |
-| `legendas_ep01.srt` | 68 blocos por frase, ancorados nos inícios reais de voz |
+| `legendas_ep01.srt` | 66 blocos por frase, com tempos de reconhecimento de fala |
 | `post.md` | Legenda do post, comentário fixado e observações |
 | `roteiro_final.md` | Roteiro com os tempos reais de cada fala e a ação de cada cena |
 | `lista_de_cenas.md` | 7 cenas com início, fim, falas e momentos marcados |
@@ -33,22 +33,27 @@ Este relatório diz o que foi executado e conferido, e também o que **não** fo
 
 ## 3. Áudio
 
-**Separação das falas.** Cada arquivo do ElevenLabs traz todas as falas de um personagem. As pausas entre falas (0,3 a 1 s) têm o mesmo tamanho das pausas dentro das falas, então cortar só pelos silêncios erraria. O corte foi escolhido por programação dinâmica, cruzando os silêncios com o tamanho esperado de cada fala (proporcional às sílabas).
+**Separação das falas e tempo das legendas (versão 3, atual).**
 
-- **Resultado:** as 27 falas foram separadas, com o número certo de falas em cada personagem: narrador 9, Arthur 6, Diego 4, Mendes 4, Helena 3, Victor 1.
-- **Conferência visual:** `audio/verificacao_cortes_das_falas.png` mostra a forma de onda de cada arquivo com os cortes.
-- **Ruídos nas bordas:** um estalo antes das falas 03 e 05 (Diego) e respirações no fim da 06 (Arthur) e da 20 (Diego) ficaram fora do corte.
+- **Causa do problema de legenda trocada:** a gravação do narrador **não tem a fala 22** ("Treze minutos. Duas jogadas."). O arquivo traz 8 falas, não 9. A versão anterior cortava pelo tamanho e não sabia o que era dito, então forçou 9 falas e empurrou o áudio das falas 13 a 22 para os textos errados. Por exemplo, o trecho que ia para a fala 19 continha "Ela não respondeu. Guarda essa.".
+- **Correção:** os áudios agora são transcritos por reconhecimento de fala (Vosk, modelo pequeno de português). Para baixar o modelo, foi criado um ambiente pessoal `claude-remotion-skill`, com acesso a `alphacephei.com`, aprovado por você.
+  1. O texto esperado de cada personagem é casado com as palavras reconhecidas.
+  2. Cada fala é cortada no maior silêncio entre a última palavra dela e a primeira da seguinte.
+  3. Uma fala sem nenhuma palavra reconhecida fica marcada como **ausente** e não recebe áudio de outra.
+- **Tempo de cada palavra:** cada fala cortada é reconhecida de novo, com o vocabulário restrito ao texto dela. Ficaram reconhecidas 225 das 227 palavras; só "sumidas" (fora do vocabulário do modelo) e uma palavra da fala 01 foram interpoladas entre as vizinhas.
+- **Legendas:** são blocos por frase, de até 44 caracteres e duas linhas, entrando 0,05 s antes da voz.
+- **Conferência automática legenda × áudio:** a faixa de diálogos de cada bloco foi transcrita de novo e comparada com o texto do bloco.
+  - Resultado: mediana de semelhança 0,97 em 66 blocos.
+  - Os blocos com nota baixa são a fala do Victor (o efeito de telefone atrapalha o reconhecedor; as palavras dele foram marcadas no áudio sem o efeito, 13 de 13 reconhecidas), monossílabos soltos ("né?", "É.") e nomes ouvidos errado ("Diego" virou "diabo").
+  - Nenhum bloco mostra o texto de outra fala.
+- **Fala 22 ausente:** no lugar dela ficou um respiro de 1,3 s no close do relógio, sem legenda. Para recolocá-la, basta gravar só "Treze minutos. Duas jogadas." com a voz do narrador e rodar de novo `alinhar_vosk.py` e `montar_timeline.py`.
+- **Versões anteriores descartadas:**
+  - estimativa por sílabas;
+  - alinhamento DTW contra voz sintética do espeak-ng;
+  - casamento por ritmo de fala.
 
-**Tempo das legendas.** Não há reconhecimento de fala neste ambiente, então o tempo de cada palavra é **estimado** a partir da forma de onda.
-
-- **Versão 1, corrigida depois da sua observação de que estava fora de sincronia:** acendia palavra por palavra com tempos estimados por sílabas. Nas frases sem pausa, as palavras adiantavam ou atrasavam alguns décimos. Na fala 13, frases inteiras caíam no trecho de voz errado.
-- **Versão 2, a atual:**
-  1. Cada fala é dividida em frases na pontuação. Uma programação dinâmica decide qual trecho de voz pertence a qual frase, mantendo constante o ritmo de sílabas por segundo e penalizando silêncios longos dentro de uma frase.
-  2. Os blocos de legenda quebram na pontuação e têm no máximo 44 caracteres (duas linhas).
-  3. Cada bloco gruda no início de voz real mais próximo e entra 0,05 s antes da voz. Isso vale para 57 dos 68 blocos; os outros 11 começam no meio de frases sem pausa e dependem da estimativa.
-  4. O acendimento palavra por palavra foi retirado, porque era o que mais expunha erros pequenos.
-- **Conferência visual:** `verificacao_legendas_sobre_a_voz.png` mostra a faixa de diálogos inteira com o início de cada bloco.
-- **Tentativa descartada:** alinhar por DTW contra uma voz sintética do espeak-ng. Na fala 13, esse método espremeu as palavras finais, então não foi usado.
+  Todas falhavam porque não sabiam o que estava sendo dito.
+- **Arquivos de conferência:** `audio/verificacao_cortes_das_falas.png` (cortes) e `verificacao_legendas_sobre_a_voz.png` (início de cada bloco sobre a voz).
 
 **Duração.** As vozes somam cerca de 90 s. Com as pausas e os 3,2 s finais no voto, o episódio tem **1:49,7**. Nenhuma voz foi acelerada e nenhuma pausa dentro das falas foi cortada. Só as pausas entre falas foram ajustadas. É mais longo que os 60 a 75 s ideais para Reels; para encurtar, o caminho é regravar o narrador num ritmo mais rápido.
 
@@ -117,7 +122,7 @@ Este relatório diz o que foi executado e conferido, e também o que **não** fo
 ## 7. Limites conhecidos (honestamente)
 
 - **Duração:** 1:49,7 é mais longo que o ideal para Reels. O ritmo vem das vozes; encurtar exige regravar com um ritmo mais rápido ou cortar texto.
-- **Legendas sem reconhecimento de fala:** os inícios de frase estão presos à voz real. Dentro de frases longas sem pausa, a divisão em blocos é estimada. Para sincronia exata palavra a palavra, falta um reconhecedor de fala: o ambiente bloqueia o download do modelo (huggingface.co e o host de modelos do Whisper), ou dá para usar os tempos exportados pelo ElevenLabs.
+- **Fala 22 ausente na gravação do narrador:** o episódio está sem "Treze minutos. Duas jogadas.". O prazo de 13 minutos continua claro pelo relógio (21:47), pela ordem do Mendes ("Solta ele às dez") e pela fala final ("Ele decide em treze minutos").
 - **Não ouvido:** não consigo ouvir. A interpretação das vozes, eventuais erros de leitura do ElevenLabs e o resultado estético da trilha sintetizada precisam da sua escuta antes de publicar.
 - **Movimento conferido por quadros:** os movimentos foram conferidos em quadros soltos e na animática, não assistindo em tempo real. Caminhadas e viradas de perfil para frente são simples (a virada é um corte de pose, sem quadros intermediários).
 - **Estilo dos personagens:** os bonecos são figuras 2D vetoriais. Não usei o aspecto 3D com sombreamento suave da referência, porque o briefing pede desenho próprio.
