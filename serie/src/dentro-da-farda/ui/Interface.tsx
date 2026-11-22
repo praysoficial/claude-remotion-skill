@@ -35,7 +35,7 @@ export const Contador: React.FC<{ dia: number; total: number; desde: number; t: 
   );
 };
 
-// ── Legendas palavra a palavra (no máximo 2 linhas) ──────────────────────────
+// ── Legendas por frase, ancoradas no início real da voz (no máximo 2 linhas) ─
 type Palavra = { w: string; t0: number; t1: number };
 type Bloco = { quem: string; ini: number; fim: number; palavras: Palavra[] };
 
@@ -80,12 +80,11 @@ export const Legendas: React.FC<{ blocos: Bloco[]; t: number; y: number; ocultar
         }}
       >
         {b.palavras.map((p, i) => {
-          const dita = t >= p.t0;
           let cor: string = C.texto;
           for (const [re, c] of DESTAQUE) if (re.test(p.w)) cor = c;
           if (ehPrazo(b.palavras, i)) cor = C.vermelho;
           return (
-            <span key={i} style={{ color: cor, opacity: dita ? 1 : 0.42 }}>
+            <span key={i} style={{ color: cor }}>
               {p.w}
               {i < b.palavras.length - 1 ? " " : ""}
             </span>

@@ -8,7 +8,7 @@ Este relatório diz o que foi executado e conferido, e também o que **não** fo
 |---|---|
 | `dentro_da_farda_ep01.mp4` | Vídeo final: 1080×1920, 30 fps, H.264 + AAC 256 kbps |
 | `capa_ep01.jpg` | Capa 1080×1920; título e personagem dentro do recorte 4:5 do perfil |
-| `legendas_ep01.srt` | 72 blocos, com tempos tirados do áudio |
+| `legendas_ep01.srt` | 68 blocos por frase, ancorados nos inícios reais de voz |
 | `post.md` | Legenda do post, comentário fixado e observações |
 | `roteiro_final.md` | Roteiro com os tempos reais de cada fala e a ação de cada cena |
 | `lista_de_cenas.md` | 7 cenas com início, fim, falas e momentos marcados |
@@ -39,7 +39,16 @@ Este relatório diz o que foi executado e conferido, e também o que **não** fo
 - **Conferência visual:** `audio/verificacao_cortes_das_falas.png` mostra a forma de onda de cada arquivo com os cortes.
 - **Ruídos nas bordas:** um estalo antes das falas 03 e 05 (Diego) e respirações no fim da 06 (Arthur) e da 20 (Diego) ficaram fora do corte.
 
-**Tempo por palavra.** É **estimado pela forma de onda**, não reconhecido. Os silêncios dentro de cada fala são casados com a pontuação mais próxima, e as palavras se distribuem por sílabas no tempo com voz. Na primeira versão, duas falas (07 e 19) começavam a legenda 1 s atrasada; o método foi corrigido e conferido de novo. Num trecho longo sem pausa, uma palavra pode adiantar ou atrasar alguns décimos de segundo.
+**Tempo das legendas.** Não há reconhecimento de fala neste ambiente, então o tempo de cada palavra é **estimado** a partir da forma de onda.
+
+- **Versão 1, corrigida depois da sua observação de que estava fora de sincronia:** acendia palavra por palavra com tempos estimados por sílabas. Nas frases sem pausa, as palavras adiantavam ou atrasavam alguns décimos. Na fala 13, frases inteiras caíam no trecho de voz errado.
+- **Versão 2, a atual:**
+  1. Cada fala é dividida em frases na pontuação. Uma programação dinâmica decide qual trecho de voz pertence a qual frase, mantendo constante o ritmo de sílabas por segundo e penalizando silêncios longos dentro de uma frase.
+  2. Os blocos de legenda quebram na pontuação e têm no máximo 44 caracteres (duas linhas).
+  3. Cada bloco gruda no início de voz real mais próximo e entra 0,05 s antes da voz. Isso vale para 57 dos 68 blocos; os outros 11 começam no meio de frases sem pausa e dependem da estimativa.
+  4. O acendimento palavra por palavra foi retirado, porque era o que mais expunha erros pequenos.
+- **Conferência visual:** `verificacao_legendas_sobre_a_voz.png` mostra a faixa de diálogos inteira com o início de cada bloco.
+- **Tentativa descartada:** alinhar por DTW contra uma voz sintética do espeak-ng. Na fala 13, esse método espremeu as palavras finais, então não foi usado.
 
 **Duração.** As vozes somam cerca de 90 s. Com as pausas e os 3,2 s finais no voto, o episódio tem **1:49,7**. Nenhuma voz foi acelerada e nenhuma pausa dentro das falas foi cortada. Só as pausas entre falas foram ajustadas. É mais longo que os 60 a 75 s ideais para Reels; para encurtar, o caminho é regravar o narrador num ritmo mais rápido.
 
@@ -108,7 +117,7 @@ Este relatório diz o que foi executado e conferido, e também o que **não** fo
 ## 7. Limites conhecidos (honestamente)
 
 - **Duração:** 1:49,7 é mais longo que o ideal para Reels. O ritmo vem das vozes; encurtar exige regravar com um ritmo mais rápido ou cortar texto.
-- **Tempo por palavra estimado:** sem reconhecimento de fala, a legenda palavra a palavra pode adiantar ou atrasar alguns décimos de segundo em frases longas sem pausa.
+- **Legendas sem reconhecimento de fala:** os inícios de frase estão presos à voz real. Dentro de frases longas sem pausa, a divisão em blocos é estimada. Para sincronia exata palavra a palavra, falta um reconhecedor de fala: o ambiente bloqueia o download do modelo (huggingface.co e o host de modelos do Whisper), ou dá para usar os tempos exportados pelo ElevenLabs.
 - **Não ouvido:** não consigo ouvir. A interpretação das vozes, eventuais erros de leitura do ElevenLabs e o resultado estético da trilha sintetizada precisam da sua escuta antes de publicar.
 - **Movimento conferido por quadros:** os movimentos foram conferidos em quadros soltos e na animática, não assistindo em tempo real. Caminhadas e viradas de perfil para frente são simples (a virada é um corte de pose, sem quadros intermediários).
 - **Estilo dos personagens:** os bonecos são figuras 2D vetoriais. Não usei o aspecto 3D com sombreamento suave da referência, porque o briefing pede desenho próprio.

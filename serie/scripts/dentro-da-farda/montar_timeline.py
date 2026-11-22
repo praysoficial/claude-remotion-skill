@@ -105,12 +105,15 @@ M = {k: round(v, 3) for k, v in M.items()}
 
 # ── 3. Legendas: blocos curtos (até 2 linhas), quebrando em pontuação ───────────
 def blocos_de_legenda(l):
+    """Blocos quebram na PONTUAÇÃO (onde há pausa real na voz). Frases de até ~56
+    caracteres ficam inteiras (2 linhas); só frases maiores são divididas no meio."""
     ws, out, atual = l["palavras"], [], []
     for i, p in enumerate(ws):
         atual.append(p)
         chars = sum(len(x["w"]) + 1 for x in atual)
-        quebra = re.search(r"[.?!:…—]$", p["w"]) or (re.search(r",$", p["w"]) and chars > 14) or chars > 30
-        if quebra or i == len(ws) - 1:
+        fim_frase = re.search(r"[.?!:…—]$", p["w"])
+        virgula = re.search(r",$", p["w"]) and chars > 18
+        if fim_frase or virgula or chars > 44 or i == len(ws) - 1:
             out.append(atual); atual = []
     return [{"quem": l["quem"], "ini": b[0]["t0"], "fim": b[-1]["t1"], "palavras": b} for b in out]
 
@@ -261,6 +264,27 @@ por(toque_tela(), M["play"])
 # gota isolada no silêncio depois do áudio do Victor
 por(gota(), M["audio_corta"] + 0.35, 0.8); gotas.append(round(M["audio_corta"] + 0.35, 3))
 timeline["gotas"] = sorted(gotas)
+
+# inícios de voz reais na faixa de diálogos (energia por 10 ms, depois de 120 ms de silêncio)
+_h = int(0.01 * SR); _n = len(voz) // _h
+_db = 20 * np.log10(np.sqrt((voz[: _n * _h].reshape(_n, _h) ** 2).mean(1)) + 1e-9)
+_v = _db > _db.max() - 38
+inicios_voz = np.array([i / 100 for i in range(12, _n) if _v[i] and not _v[i - 12:i].any()])
+ajustes = []
+for b in timeline["legendas"]:
+    d = inicios_voz - b["ini"]
+    k = int(np.argmin(np.abs(d)))
+    if abs(d[k]) <= 0.3:
+        novo = round(float(inicios_voz[k]) - 0.05, 3)
+        ajustes.append(novo - b["ini"])
+        desloc = novo - b["ini"]
+        b["ini"] = novo
+        b["palavras"][0]["t0"] = round(b["palavras"][0]["t0"] + desloc, 3)
+for i, b in enumerate(timeline["legendas"]):
+    if i + 1 < len(timeline["legendas"]):
+        b["fim"] = round(min(b["fim"], timeline["legendas"][i + 1]["ini"] - 0.03), 3)
+legendas = timeline["legendas"]
+print(f"  legendas: {len(legendas)} blocos, {len(ajustes)} ancorados num início de voz (ajuste médio {np.mean(np.abs(ajustes)) if ajustes else 0:.2f} s)")
 timeline["rele_periodo"] = 0.55
 json.dump(timeline, open(os.path.join(RAIZ, "src/dentro-da-farda/ep01/timeline.json"), "w"), ensure_ascii=False)
 
