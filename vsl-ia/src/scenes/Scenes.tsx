@@ -402,8 +402,8 @@ export const S6: React.FC = () => {
   const enter = spring({ frame, fps, config: theme.spring.smooth });
   return (
     <AbsoluteFill>
-      <div style={{ position: "absolute", left: 190, top: 160, transform: `perspective(2000px) rotateY(${Math.sin(frame / 30) * 5}deg) scale(${interpolate(enter, [0, 1], [1.3, 1])})`, opacity: Math.min(1, enter * 1.5) }}>
-        <div style={{ position: "relative", borderRadius: 30, overflow: "hidden", boxShadow: `0 60px 120px -30px rgba(0,0,0,0.9), 0 0 0 5px ${C.primary}, 0 0 80px ${C.glow}` }}>{crop(tile, 700, IG.src, z)}</div>
+      <div style={{ position: "absolute", left: 255, top: 150, transform: `perspective(2000px) rotateY(${Math.sin(frame / 30) * 5}deg) scale(${interpolate(enter, [0, 1], [1.3, 1])})`, opacity: Math.min(1, enter * 1.5) }}>
+        <div style={{ position: "relative", borderRadius: 30, overflow: "hidden", boxShadow: `0 60px 120px -30px rgba(0,0,0,0.9), 0 0 0 5px ${C.primary}, 0 0 80px ${C.glow}` }}>{crop(tile, 570, IG.src, z)}</div>
         <div style={{ position: "absolute", inset: -14, borderRadius: 40, border: `4px solid ${C.primary}`, opacity: 1 - ring, transform: `scale(${1 + ring * 0.08})` }} />
         <div style={{ position: "absolute", left: 24, top: 24 }}>
           <In delay={at(25.92)} cfg="bouncy" scale={0.6} y={-20}>
@@ -411,8 +411,8 @@ export const S6: React.FC = () => {
           </In>
         </div>
       </div>
-      <div style={{ position: "absolute", left: 0, right: 0, top: 1000, display: "flex", flexDirection: "column", alignItems: "center" }}>
-        <div style={{ ...display(210), color: C.primary, fontVariantNumeric: "tabular-nums", textShadow: `0 0 60px ${C.glow}, ${rgb(1.2)}`, opacity: cnt > 0 ? 1 : 0, transform: `scale(${interpolate(cnt, [0, 1], [0.7, 1])})` }}>
+      <div style={{ position: "absolute", left: 0, right: 0, top: 960, display: "flex", flexDirection: "column", alignItems: "center" }}>
+        <div style={{ ...display(200), color: C.primary, fontVariantNumeric: "tabular-nums", textShadow: `0 0 60px ${C.glow}, ${rgb(1.2)}`, opacity: cnt > 0 ? 1 : 0, transform: `scale(${interpolate(cnt, [0, 1], [0.7, 1])})` }}>
           {Math.round(cnt * 264)} mil
         </div>
         <In delay={at(28.2)} y={20}>
